@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <title>Exmap — Brand Exploration</title>
+  <meta name="design_doc_mode" content="canvas">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    html, body { margin: 0; padding: 0; background: #04070c; }
+    a { color: #38d9f5; text-decoration: none; }
+    a:hover { color: #9beeff; }
+    ::selection { background: #38d9f5; color: #04070c; }
+  </style>
+</helmet>
+
+<section style="padding: 48px; font-family: 'Chakra Petch', sans-serif; color: #dfe9ef; display: flex; flex-direction: column; gap: 32px;">
+
+  <div style="display: flex; align-items: baseline; gap: 18px;">
+    <span style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.22em; color: #38d9f5;">TURN 01</span>
+    <h1 style="margin: 0; font-size: 26px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase;">Logo concepts + moodboard</h1>
+    <span style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: #5a6d78;">motif: terrain contour lines</span>
+  </div>
+
+  <!-- ═══ logo options row ═══ -->
+  <div style="display: flex; gap: 24px; flex-wrap: wrap; align-items: stretch;">
+
+    <!-- 1a TOPO -->
+    <div id="1a" style="width: 380px; background: #070c14; border: 1px solid rgba(56,217,245,0.16); display: flex; flex-direction: column;">
+      <div style="display: flex; align-items: center; justify-content: space-between; padding: 12px 16px; border-bottom: 1px solid rgba(56,217,245,0.12);">
+        <span style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; background: #38d9f5; color: #04070c; padding: 3px 8px; font-weight: 500;">1a</span>
+        <span style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.18em; color: #8fa6b2;">TOPO</span>
+      </div>
+      <div style="height: 260px; display: grid; place-items: center; position: relative; overflow: hidden;">
+        <div style="position: relative; width: 150px; height: 150px;">
+          <div style="position: absolute; inset: 0; border: 2px solid rgba(56,217,245,0.25); border-radius: 46% 54% 52% 48% / 52% 46% 54% 48%;"></div>
+          <div style="position: absolute; inset: 16px 20px 20px 14px; border: 2px solid rgba(56,217,245,0.4); border-radius: 52% 48% 46% 54% / 48% 54% 46% 52%;"></div>
+          <div style="position: absolute; inset: 34px 40px 40px 28px; border: 2px solid rgba(56,217,245,0.6); border-radius: 48% 52% 54% 46% / 54% 48% 52% 46%;"></div>
+          <div style="position: absolute; inset: 52px 58px 58px 44px; border: 2px solid rgba(56,217,245,0.85); border-radius: 50% 46% 48% 54% / 46% 52% 48% 54%;"></div>
+          <div style="position: absolute; left: 62px; top: 66px; width: 10px; height: 10px; background: #38d9f5; transform: rotate(45deg);"></div>
+        </div>
+      </div>
+      <div style="display: flex; align-items: center; gap: 12px; padding: 16px; border-top: 1px solid rgba(56,217,245,0.12);">
+        <div style="position: relative; width: 26px; height: 26px; flex: none;">
+          <div style="position: absolute; inset: 0; border: 1.5px solid rgba(56,217,245,0.45); border-radius: 46% 54% 52% 48% / 52% 46% 54% 48%;"></div>
+          <div style="position: absolute; inset: 6px 7px 7px 5px; border: 1.5px solid #38d9f5; border-radius: 52% 48% 46% 54% / 48% 54% 46% 52%;"></div>
+          <div style="position: absolute; left: 11px; top: 11px; width: 4px; height: 4px; background: #38d9f5; transform: rotate(45deg);"></div>
+        </div>
+        <span style="font-weight: 700; font-size: 20px; letter-spacing: 0.18em;">EXMAP</span>
+      </div>
+      <p style="margin: 0; padding: 0 16px 16px; font-size: 13px; line-height: 1.55; color: #8fa6b2;">Contour rings converge on a summit point — the terrain itself becomes the mark. Rings can draw on in the animated version.</p>
+    </div>
+
+    <!-- 1b STRATA -->
+    <div id="1b" style="width: 380px; background: #070c14; border: 1px solid rgba(56,217,245,0.16); display: flex; flex-direction: column;">
+      <div style="display: flex; align-items: center; justify-content: space-between; padding: 12px 16px; border-bottom: 1px solid rgba(56,217,245,0.12);">
+        <span style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; background: #38d9f5; color: #04070c; padding: 3px 8px; font-weight: 500;">1b</span>
+        <span style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.18em; color: #8fa6b2;">STRATA</span>
+      </div>
+      <div style="height: 260px; display: grid; place-items: center;">
+        <div style="position: relative; width: 150px; height: 150px;">
+          <div style="position: absolute; left: 25px; top: 82px; width: 100px; height: 100px; border: 2px solid rgba(56,217,245,0.3); transform: rotateX(58deg) rotateZ(45deg);"></div>
+          <div style="position: absolute; left: 25px; top: 54px; width: 100px; height: 100px; border: 2px solid rgba(56,217,245,0.55); transform: rotateX(58deg) rotateZ(45deg);"></div>
+          <div style="position: absolute; left: 25px; top: 26px; width: 100px; height: 100px; background: rgba(56,217,245,0.12); border: 2px solid #38d9f5; transform: rotateX(58deg) rotateZ(45deg); display: grid; place-items: center;">
+            <div style="width: 14px; height: 14px; background: #38d9f5;"></div>
+          </div>
+        </div>
+      </div>
+      <div style="display: flex; align-items: center; gap: 12px; padding: 16px; border-top: 1px solid rgba(56,217,245,0.12);">
+        <div style="position: relative; width: 26px; height: 30px; flex: none;">
+          <div style="position: absolute; left: 3px; top: 16px; width: 18px; height: 18px; border: 1.5px solid rgba(56,217,245,0.4); transform: rotateX(58deg) rotateZ(45deg);"></div>
+          <div style="position: absolute; left: 3px; top: 10px; width: 18px; height: 18px; border: 1.5px solid rgba(56,217,245,0.7); transform: rotateX(58deg) rotateZ(45deg);"></div>
+          <div style="position: absolute; left: 3px; top: 4px; width: 18px; height: 18px; background: rgba(56,217,245,0.15); border: 1.5px solid #38d9f5; transform: rotateX(58deg) rotateZ(45deg);"></div>
+        </div>
+        <span style="font-weight: 700; font-size: 20px; letter-spacing: 0.18em;">EXMAP</span>
+      </div>
+      <p style="margin: 0; padding: 0 16px 16px; font-size: 13px; line-height: 1.55; color: #8fa6b2;">Isometric data layers stacking over the ground plane — the product story (contextualize) in one glyph. Layers slide in on load.</p>
+    </div>
+
+    <!-- 1c BENCHMARK -->
+    <div id="1c" style="width: 380px; background: #070c14; border: 1px solid rgba(56,217,245,0.16); display: flex; flex-direction: column;">
+      <div style="display: flex; align-items: center; justify-content: space-between; padding: 12px 16px; border-bottom: 1px solid rgba(56,217,245,0.12);">
+        <span style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; background: #38d9f5; color: #04070c; padding: 3px 8px; font-weight: 500;">1c</span>
+        <span style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.18em; color: #8fa6b2;">BENCHMARK</span>
+      </div>
+      <div style="height: 260px; display: grid; place-items: center;">
+        <div style="position: relative; width: 150px; height: 150px;">
+          <div style="position: absolute; inset: 14px; border: 2px solid rgba(56,217,245,0.45); border-radius: 50%;"></div>
+          <div style="position: absolute; left: 74px; top: 0; width: 2px; height: 150px; background: rgba(56,217,245,0.6);"></div>
+          <div style="position: absolute; left: 0; top: 74px; width: 150px; height: 2px; background: rgba(56,217,245,0.6);"></div>
+          <div style="position: absolute; left: 47px; top: 47px; width: 56px; height: 56px; border: 2px solid #38d9f5; transform: rotate(45deg); background: #04070c; display: grid; place-items: center;">
+            <div style="width: 12px; height: 12px; background: #38d9f5;"></div>
+          </div>
+        </div>
+      </div>
+      <div style="display: flex; align-items: center; gap: 12px; padding: 16px; border-top: 1px solid rgba(56,217,245,0.12);">
+        <div style="position: relative; width: 26px; height: 26px; flex: none;">
+          <div style="position: absolute; inset: 3px; border: 1.5px solid rgba(56,217,245,0.5); border-radius: 50%;"></div>
+          <div style="position: absolute; left: 12px; top: 0; width: 1.5px; height: 26px; background: rgba(56,217,245,0.55);"></div>
+          <div style="position: absolute; left: 0; top: 12px; width: 26px; height: 1.5px; background: rgba(56,217,245,0.55);"></div>
+          <div style="position: absolute; left: 8px; top: 8px; width: 9px; height: 9px; border: 1.5px solid #38d9f5; transform: rotate(45deg); background: #04070c;"></div>
+        </div>
+        <span style="font-weight: 700; font-size: 20px; letter-spacing: 0.18em;">EXMAP</span>
+      </div>
+      <p style="margin: 0; padding: 0 16px 16px; font-size: 13px; line-height: 1.55; color: #8fa6b2;">A survey benchmark / crosshair — the fixed point every measurement trusts. Evolves the current diamond; reads at favicon size.</p>
+    </div>
+
+    <!-- 1d XPOINT -->
+    <div id="1d" style="width: 380px; background: #070c14; border: 1px solid rgba(56,217,245,0.16); display: flex; flex-direction: column;">
+      <div style="display: flex; align-items: center; justify-content: space-between; padding: 12px 16px; border-bottom: 1px solid rgba(56,217,245,0.12);">
+        <span style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; background: #38d9f5; color: #04070c; padding: 3px 8px; font-weight: 500;">1d</span>
+        <span style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.18em; color: #8fa6b2;">XPOINT</span>
+      </div>
+      <div style="height: 260px; display: grid; place-items: center;">
+        <div style="position: relative; width: 150px; height: 150px;">
+          <div style="position: absolute; left: 69px; top: -6px; width: 12px; height: 162px; background: #dfe9ef; transform: rotate(45deg);"></div>
+          <div style="position: absolute; left: 69px; top: -6px; width: 12px; height: 70px; background: #38d9f5; transform-origin: 6px 81px; transform: rotate(-45deg);"></div>
+          <div style="position: absolute; left: 69px; top: 86px; width: 12px; height: 70px; background: #38d9f5; transform-origin: 6px -5px; transform: rotate(-45deg);"></div>
+        </div>
+      </div>
+      <div style="display: flex; align-items: center; gap: 12px; padding: 16px; border-top: 1px solid rgba(56,217,245,0.12);">
+        <div style="position: relative; width: 26px; height: 26px; flex: none;">
+          <div style="position: absolute; left: 11.5px; top: -1px; width: 3px; height: 28px; background: #dfe9ef; transform: rotate(45deg);"></div>
+          <div style="position: absolute; left: 11.5px; top: -1px; width: 3px; height: 12.5px; background: #38d9f5; transform-origin: 1.5px 14px; transform: rotate(-45deg);"></div>
+          <div style="position: absolute; left: 11.5px; top: 14.5px; width: 3px; height: 12.5px; background: #38d9f5; transform-origin: 1.5px -1.5px; transform: rotate(-45deg);"></div>
+        </div>
+        <span style="font-weight: 700; font-size: 20px; letter-spacing: 0.18em;">EXMAP</span>
+      </div>
+      <p style="margin: 0; padding: 0 16px 16px; font-size: 13px; line-height: 1.55; color: #8fa6b2;">X marks the spot — two coordinate axes crossing at a point of decision. Bold monogram; strongest at small sizes and on merch.</p>
+    </div>
+
+  </div>
+
+  <!-- ═══ 1e moodboard ═══ -->
+  <div id="1e" style="background: #070c14; border: 1px solid rgba(56,217,245,0.16); max-width: 1640px;">
+    <div style="display: flex; align-items: center; gap: 14px; padding: 12px 16px; border-bottom: 1px solid rgba(56,217,245,0.12);">
+      <span style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; background: #38d9f5; color: #04070c; padding: 3px 8px; font-weight: 500;">1e</span>
+      <span style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.18em; color: #8fa6b2;">MOODBOARD — REALITY FROM EVERY PERSPECTIVE</span>
+    </div>
+
+    <div style="display: grid; grid-template-columns: repeat(4, 1fr); grid-auto-rows: 200px; gap: 12px; padding: 16px;">
+
+      <!-- essence -->
+      <div style="grid-column: span 2; background: #04070c; border: 1px solid rgba(56,217,245,0.14); padding: 24px; display: flex; flex-direction: column; justify-content: space-between;">
+        <div style="font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.22em; color: #38d9f5;">BRAND ESSENCE</div>
+        <div style="font-size: 34px; font-weight: 700; line-height: 1.05; text-transform: uppercase; text-wrap: balance;">Reality from every perspective</div>
+        <div style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: #5a6d78;">precise · confident · a little audacious</div>
+      </div>
+
+      <!-- palette -->
+      <div style="background: #04070c; border: 1px solid rgba(56,217,245,0.14); padding: 18px; display: flex; flex-direction: column; gap: 10px;">
+        <div style="font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.22em; color: #38d9f5;">PALETTE</div>
+        <div style="flex: 1; display: grid; grid-template-columns: repeat(5, 1fr); gap: 8px;">
+          <div style="background: #04070c; border: 1px solid rgba(255,255,255,0.15);"></div>
+          <div style="background: #0b1420;"></div>
+          <div style="background: #38d9f5;"></div>
+          <div style="background: #8fa6b2;"></div>
+          <div style="background: #dfe9ef;"></div>
+        </div>
+        <div style="display: grid; grid-template-columns: repeat(5, 1fr); gap: 8px; font-family: 'IBM Plex Mono', monospace; font-size: 9px; color: #5a6d78; text-align: center;">
+          <span>04070C</span><span>0B1420</span><span>38D9F5</span><span>8FA6B2</span><span>DFE9EF</span>
+        </div>
+      </div>
+
+      <!-- type -->
+      <div style="background: #04070c; border: 1px solid rgba(56,217,245,0.14); padding: 18px; display: flex; flex-direction: column; gap: 8px; justify-content: space-between;">
+        <div style="font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.22em; color: #38d9f5;">TYPE</div>
+        <div style="font-size: 30px; font-weight: 700; letter-spacing: 0.04em;">Chakra Petch</div>
+        <div style="font-family: 'IBM Plex Mono', monospace; font-size: 14px; color: #8fa6b2;">IBM Plex Mono</div>
+        <div style="font-family: 'IBM Plex Mono', monospace; font-size: 10px; color: #5a6d78;">display / HUD annotations</div>
+      </div>
+
+      <!-- terrain ref slots -->
+      <div style="position: relative; background: #04070c; border: 1px solid rgba(56,217,245,0.14);">
+        <image-slot id="mood-terrain-1" shape="rect" placeholder="terrain contour map ref"></image-slot>
+      </div>
+      <div style="position: relative; background: #04070c; border: 1px solid rgba(56,217,245,0.14);">
+        <image-slot id="mood-terrain-2" shape="rect" placeholder="terrain contour map ref"></image-slot>
+      </div>
+
+      <!-- contour motif tile -->
+      <div style="background: #04070c; border: 1px solid rgba(56,217,245,0.14); position: relative; overflow: hidden;">
+        <div style="position: absolute; left: -30%; top: -40%; width: 160%; height: 180%; border: 1.5px solid rgba(56,217,245,0.14); border-radius: 46% 54% 52% 48% / 52% 46% 54% 48%;"></div>
+        <div style="position: absolute; left: -18%; top: -26%; width: 130%; height: 150%; border: 1.5px solid rgba(56,217,245,0.2); border-radius: 52% 48% 46% 54% / 48% 54% 46% 52%;"></div>
+        <div style="position: absolute; left: -6%; top: -10%; width: 104%; height: 118%; border: 1.5px solid rgba(56,217,245,0.28); border-radius: 48% 52% 54% 46% / 54% 48% 52% 46%;"></div>
+        <div style="position: absolute; left: 8%; top: 8%; width: 76%; height: 84%; border: 1.5px solid rgba(56,217,245,0.4); border-radius: 50% 46% 48% 54% / 46% 52% 48% 54%;"></div>
+        <div style="position: absolute; left: 24%; top: 28%; width: 46%; height: 48%; border: 1.5px solid rgba(56,217,245,0.6); border-radius: 46% 54% 48% 52% / 52% 48% 54% 46%;"></div>
+        <div style="position: absolute; left: 40%; top: 46%; width: 16%; height: 14%; border: 1.5px solid #38d9f5; border-radius: 50%;"></div>
+        <div style="position: absolute; left: 12px; bottom: 10px; font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.22em; color: #38d9f5;">GRAPHIC MOTIF — CONTOURS</div>
+      </div>
+
+      <!-- tone of voice -->
+      <div style="background: #0b1420; border: 1px solid rgba(56,217,245,0.14); padding: 18px; display: flex; flex-direction: column; gap: 10px; justify-content: center;">
+        <div style="font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.22em; color: #38d9f5;">TONE OF VOICE</div>
+        <div style="font-size: 17px; font-weight: 600; line-height: 1.4;">"Own your reality."</div>
+        <div style="font-size: 13px; line-height: 1.55; color: #8fa6b2;">Short, declarative, spatial. Talks like a surveyor with swagger — measured claims, zero fluff.</div>
+      </div>
+
+      <!-- current hero -->
+      <div style="grid-column: span 2; background: #04070c; border: 1px solid rgba(56,217,245,0.14); position: relative; overflow: hidden;">
+        <img src="reference/01-layers.jpg" alt="Current hero direction" style="width: 100%; height: 100%; object-fit: cover; object-position: top; display: block;">
+        <div style="position: absolute; left: 12px; bottom: 10px; font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.22em; color: #38d9f5; background: rgba(4,7,12,0.8); padding: 3px 8px;">HERO DIRECTION — WIREFRAME CITY</div>
+      </div>
+
+      <!-- texture ref slot -->
+      <div style="position: relative; background: #04070c; border: 1px solid rgba(56,217,245,0.14);">
+        <image-slot id="mood-texture-1" shape="rect" placeholder="material / texture ref"></image-slot>
+      </div>
+
+      <!-- values -->
+      <div style="background: #04070c; border: 1px solid rgba(56,217,245,0.14); padding: 18px; display: flex; flex-direction: column; justify-content: center; gap: 8px;">
+        <div style="font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.22em; color: #38d9f5;">VALUES</div>
+        <div style="display: flex; flex-direction: column; gap: 6px; font-size: 14px; font-weight: 600; letter-spacing: 0.08em;">
+          <span>CLARITY OVER RENDER-PORN</span>
+          <span style="color: #8fa6b2;">SHARED GROUND TRUTH</span>
+          <span style="color: #5a6d78;">BUILD, DON'T GUESS</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <x-import component-from-global-scope="image-slot" from="./image-slot.js" style="display: none;" hint-size="0,0"></x-import>
+</section>
+</x-dc>
+</body>
+</html>

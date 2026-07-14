@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <title>Exmap — the 3D reality planning platform</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    html, body { margin: 0; padding: 0; background: #04070c; }
+    html { scroll-behavior: smooth; }
+    a { color: #38d9f5; text-decoration: none; }
+    a:hover { color: #9beeff; }
+    ::selection { background: #38d9f5; color: #04070c; }
+    input::placeholder { color: #5a6d78; }
+  </style>
+</helmet>
+
+<div style="background-color: #04070c; background-image: repeating-linear-gradient(0deg, rgba(56,217,245,0.022) 0px, rgba(56,217,245,0.022) 1px, transparent 1px, transparent 96px), repeating-linear-gradient(90deg, rgba(56,217,245,0.022) 0px, rgba(56,217,245,0.022) 1px, transparent 1px, transparent 96px); color: #dfe9ef; font-family: 'Chakra Petch', sans-serif; position: relative;">
+
+  <!-- film grain overlay -->
+  <div style="position: fixed; inset: 0; z-index: 40; pointer-events: none; opacity: 0.055; mix-blend-mode: overlay; background-image: url(&quot;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E&quot;);"></div>
+
+  <!-- ═══ header ═══ -->
+  <header data-screen-label="Header" style="position: sticky; top: 0; z-index: 10; background: rgba(4,7,12,0.82); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(56,217,245,0.1);">
+    <div style="max-width: 1440px; margin: 0 auto; padding: 18px 56px; display: flex; align-items: center; justify-content: space-between;">
+      <div style="display: flex; align-items: center; gap: 12px;">
+        <div style="width: 22px; height: 22px; border: 2px solid #38d9f5; transform: rotate(45deg); display: grid; place-items: center; box-shadow: 0 0 18px rgba(56,217,245,0.35);">
+          <div style="width: 6px; height: 6px; background: #38d9f5;"></div>
+        </div>
+        <span style="font-weight: 700; font-size: 17px; letter-spacing: 0.22em;">EXMAP</span>
+      </div>
+      <nav style="display: flex; gap: 40px; font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.18em;">
+        <a href="#platform" style="color: #8fa6b2; transition: color 0.25s;" style-hover="color: #dfe9ef;">PLATFORM</a>
+        <a href="#industries" style="color: #8fa6b2; transition: color 0.25s;" style-hover="color: #dfe9ef;">COMPANY</a>
+        <a href="#cases" style="color: #8fa6b2; transition: color 0.25s;" style-hover="color: #dfe9ef;">RESOURCES</a>
+      </nav>
+      <a href="#cta" style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.18em; color: #04070c; background: #38d9f5; padding: 11px 22px; font-weight: 500; box-shadow: 0 0 24px rgba(56,217,245,0.28); transition: all 0.25s;" style-hover="background: #9beeff; box-shadow: 0 0 34px rgba(56,217,245,0.5); color: #04070c;">START CREATING</a>
+    </div>
+  </header>
+
+  <!-- ═══ hero — perspective terrain ═══ -->
+  <section data-screen-label="Hero" style="min-height: calc(100vh - 60px); position: relative; overflow: hidden; display: flex; align-items: stretch;">
+    <x-import component-from-global-scope="persp-terrain" from="./hero-scene.js" accent="{{ accent }}" style="position: absolute; inset: 0;" hint-size="100%,100%"></x-import>
+    <div style="position: absolute; inset: 0; background: radial-gradient(ellipse 70% 60% at 50% 42%, rgba(56,217,245,0.06), transparent 65%); pointer-events: none;"></div>
+    <div style="position: absolute; inset: 0; background: linear-gradient(180deg, rgba(4,7,12,0.5) 0%, rgba(4,7,12,0) 30%, rgba(4,7,12,0) 62%, rgba(4,7,12,0.92) 100%); pointer-events: none;"></div>
+
+    <div style="position: relative; z-index: 2; max-width: 1440px; margin: 0 auto; padding: 0 56px; flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; gap: 26px; pointer-events: none;">
+      <div style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.34em; color: #38d9f5; text-shadow: 0 0 20px rgba(56,217,245,0.6);">— THE 3D REALITY PLANNING PLATFORM —</div>
+      <h1 style="margin: 0; font-size: clamp(48px, 6.4vw, 104px); line-height: 0.98; font-weight: 700; text-transform: uppercase; text-wrap: balance; letter-spacing: 0.005em; max-width: 14ch; text-shadow: 0 0 60px rgba(4,7,12,0.9);">Reality from every perspective</h1>
+      <p style="margin: 0; font-size: 17px; line-height: 1.65; color: #aebfc9; max-width: 52ch; text-shadow: 0 2px 18px rgba(4,7,12,0.9);">Visualize, plan and build your future on a high-resolution 3D model of your reality.</p>
+      <div style="display: flex; gap: 16px; align-items: center; margin-top: 10px; pointer-events: auto;">
+        <a href="#cta" style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; letter-spacing: 0.18em; color: #04070c; background: #38d9f5; padding: 16px 32px; font-weight: 500; box-shadow: 0 0 32px rgba(56,217,245,0.35); transition: all 0.25s;" style-hover="background: #9beeff; box-shadow: 0 0 44px rgba(56,217,245,0.55); color: #04070c;">START CREATING</a>
+        <a href="#platform" style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; letter-spacing: 0.18em; color: #dfe9ef; border: 1px solid rgba(56,217,245,0.35); padding: 15px 32px; background: rgba(4,7,12,0.5); backdrop-filter: blur(4px); transition: all 0.25s;" style-hover="border-color: #38d9f5; color: #9beeff; background: rgba(56,217,245,0.06);">SEE THE PLATFORM →</a>
+      </div>
+    </div>
+
+    <div style="position: absolute; top: 88px; left: 40px; width: 26px; height: 26px; border-top: 1px solid rgba(56,217,245,0.45); border-left: 1px solid rgba(56,217,245,0.45); pointer-events: none;"></div>
+    <div style="position: absolute; top: 88px; right: 40px; width: 26px; height: 26px; border-top: 1px solid rgba(56,217,245,0.45); border-right: 1px solid rgba(56,217,245,0.45); pointer-events: none;"></div>
+    <div style="position: absolute; bottom: 32px; left: 40px; font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.2em; color: rgba(143,166,178,0.5); pointer-events: none;">FOV 72° · ONE-POINT PERSPECTIVE</div>
+    <div style="position: absolute; bottom: 32px; right: 40px; font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.2em; color: rgba(56,217,245,0.55); pointer-events: none;">LIVE TERRAIN · 34.05°N 118.24°W</div>
+  </section>
+
+  <!-- ═══ trusted by ═══ -->
+  <section data-screen-label="Trusted by" style="border-top: 1px solid rgba(56,217,245,0.1); border-bottom: 1px solid rgba(56,217,245,0.1); background: rgba(7,12,20,0.5);">
+    <div style="max-width: 1440px; margin: 0 auto; padding: 30px 56px; display: flex; align-items: center; gap: 32px; flex-wrap: wrap; justify-content: space-between;">
+      <span style="font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.28em; color: #5a6d78;">TRUSTED BY:</span>
+      <span style="font-family: 'IBM Plex Mono', monospace; font-size: 13px; letter-spacing: 0.16em; color: #6e8290; transition: color 0.25s;" style-hover="color: #aebfc9;">ATLAS URBAN</span>
+      <span style="font-family: 'IBM Plex Mono', monospace; font-size: 13px; letter-spacing: 0.16em; color: #6e8290; transition: color 0.25s;" style-hover="color: #aebfc9;">NORDBAU</span>
+      <span style="font-family: 'IBM Plex Mono', monospace; font-size: 13px; letter-spacing: 0.16em; color: #6e8290; transition: color 0.25s;" style-hover="color: #aebfc9;">MERIDIAN CIVIC</span>
+      <span style="font-family: 'IBM Plex Mono', monospace; font-size: 13px; letter-spacing: 0.16em; color: #6e8290; transition: color 0.25s;" style-hover="color: #aebfc9;">PORT+FORM</span>
+      <span style="font-family: 'IBM Plex Mono', monospace; font-size: 13px; letter-spacing: 0.16em; color: #6e8290; transition: color 0.25s;" style-hover="color: #aebfc9;">GRIDWORKS</span>
+      <span style="font-family: 'IBM Plex Mono', monospace; font-size: 13px; letter-spacing: 0.16em; color: #6e8290; transition: color 0.25s;" style-hover="color: #aebfc9;">HALCYON DEV</span>
+    </div>
+  </section>
+
+  <!-- ═══ scroll-driven story ═══ -->
+  <section id="platform" data-screen-label="Story" style="display: grid; grid-template-columns: minmax(400px, 42%) 1fr; position: relative;">
+
+    <!-- left: chapters -->
+    <div style="display: flex; flex-direction: column;">
+
+      <div data-chapter="0" style="min-height: 58vh; display: flex; flex-direction: column; justify-content: center; gap: 18px; padding: 48px 40px 48px 56px; position: relative;">
+        <div style="font-family: 'IBM Plex Mono', monospace; font-size: 84px; font-weight: 400; color: rgba(56,217,245,0.07); position: absolute; top: 18%; left: 44px; line-height: 1;">01</div>
+        <div style="display: flex; align-items: center; gap: 12px;">
+          <div style="width: 28px; height: 1px; background: {{ ch0c }};"></div>
+          <div style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.28em; color: {{ ch0c }}; transition: color 0.4s;">01 — COVER</div>
+        </div>
+        <h2 style="margin: 0; font-size: clamp(32px, 2.6vw, 44px); line-height: 1.04; font-weight: 700; text-transform: uppercase;">Get your perspective</h2>
+        <p style="margin: 0; font-size: 16px; line-height: 1.7; color: #8fa6b2; max-width: 44ch;">High-resolution 3D mapping of your area — terrain, structures, massing. A living model of your current reality, precise enough to build on.</p>
+      </div>
+
+      <div data-chapter="1" style="min-height: 58vh; display: flex; flex-direction: column; justify-content: center; gap: 18px; padding: 48px 40px 48px 56px; position: relative;">
+        <div style="font-family: 'IBM Plex Mono', monospace; font-size: 84px; font-weight: 400; color: rgba(56,217,245,0.07); position: absolute; top: 18%; left: 44px; line-height: 1;">02</div>
+        <div style="display: flex; align-items: center; gap: 12px;">
+          <div style="width: 28px; height: 1px; background: {{ ch1c }};"></div>
+          <div style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.28em; color: {{ ch1c }}; transition: color 0.4s;">02 — CONTEXTUALIZE</div>
+        </div>
+        <h2 style="margin: 0; font-size: clamp(32px, 2.6vw, 44px); line-height: 1.04; font-weight: 700; text-transform: uppercase;">Add data layers</h2>
+        <p style="margin: 0; font-size: 16px; line-height: 1.7; color: #8fa6b2; max-width: 44ch;">Zoning, traffic, sunlight, utilities — layer live data over the model and see how every decision plays against the ground truth.</p>
+      </div>
+
+      <div data-chapter="2" style="min-height: 58vh; display: flex; flex-direction: column; justify-content: center; gap: 18px; padding: 48px 40px 48px 56px; position: relative;">
+        <div style="font-family: 'IBM Plex Mono', monospace; font-size: 84px; font-weight: 400; color: rgba(56,217,245,0.07); position: absolute; top: 18%; left: 44px; line-height: 1;">03</div>
+        <div style="display: flex; align-items: center; gap: 12px;">
+          <div style="width: 28px; height: 1px; background: {{ ch2c }};"></div>
+          <div style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.28em; color: {{ ch2c }}; transition: color 0.4s;">03 — COLLABORATE</div>
+        </div>
+        <h2 style="margin: 0; font-size: clamp(32px, 2.6vw, 44px); line-height: 1.04; font-weight: 700; text-transform: uppercase;">Perfect the plan together</h2>
+        <p style="margin: 0; font-size: 16px; line-height: 1.7; color: #8fa6b2; max-width: 44ch;">Multiplayer editing on one shared model. Live cursors, comments pinned to the geometry itself — no file-passing, no version soup.</p>
+      </div>
+
+      <div data-chapter="3" style="min-height: 58vh; display: flex; flex-direction: column; justify-content: center; gap: 18px; padding: 48px 40px 48px 56px; position: relative;">
+        <div style="font-family: 'IBM Plex Mono', monospace; font-size: 84px; font-weight: 400; color: rgba(56,217,245,0.07); position: absolute; top: 18%; left: 44px; line-height: 1;">04</div>
+        <div style="display: flex; align-items: center; gap: 12px;">
+          <div style="width: 28px; height: 1px; background: {{ ch3c }};"></div>
+          <div style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.28em; color: {{ ch3c }}; transition: color 0.4s;">04 — ACCOMPLISH</div>
+        </div>
+        <h2 style="margin: 0; font-size: clamp(32px, 2.6vw, 44px); line-height: 1.04; font-weight: 700; text-transform: uppercase;">Start implementing</h2>
+        <p style="margin: 0; font-size: 16px; line-height: 1.7; color: #8fa6b2; max-width: 44ch;">Present to decision makers or share with the community — one link, a full walkthrough on any device, no installs.</p>
+        <a href="#cta" style="align-self: flex-start; margin-top: 10px; font-family: 'IBM Plex Mono', monospace; font-size: 12px; letter-spacing: 0.18em; color: #04070c; background: #38d9f5; padding: 14px 26px; font-weight: 500; box-shadow: 0 0 28px rgba(56,217,245,0.3); transition: all 0.25s;" style-hover="background: #9beeff; box-shadow: 0 0 40px rgba(56,217,245,0.5);">GET SOME PERSPECTIVE</a>
+      </div>
+
+    </div>
+
+    <!-- right: sticky city -->
+    <div style="position: relative;">
+      <div style="position: sticky; top: 60px; height: calc(100vh - 60px);">
+        <x-import component-from-global-scope="iso-city" from="./city-scene.js" scene="{{ storyScene }}" accent="{{ accent }}" auto="0" style="position: absolute; inset: 0;" hint-size="100%,100%"></x-import>
+        <div style="position: absolute; inset: 0; background: radial-gradient(ellipse 60% 55% at 55% 50%, rgba(56,217,245,0.05), transparent 65%); pointer-events: none;"></div>
+        <div style="position: absolute; top: 30px; left: 30px; width: 24px; height: 24px; border-top: 1px solid rgba(56,217,245,0.45); border-left: 1px solid rgba(56,217,245,0.45); pointer-events: none;"></div>
+        <div style="position: absolute; bottom: 30px; right: 30px; width: 24px; height: 24px; border-bottom: 1px solid rgba(56,217,245,0.45); border-right: 1px solid rgba(56,217,245,0.45); pointer-events: none;"></div>
+        <div style="position: absolute; top: 32px; right: 36px; font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.2em; color: rgba(56,217,245,0.55); pointer-events: none;">GRID · SECTOR {{ sectorLabel }}</div>
+        <div style="position: absolute; bottom: 30px; left: 36px; display: flex; gap: 8px; pointer-events: none;">
+          <div style="width: 30px; height: 2px; background: {{ dot0 }}; transition: background 0.4s;"></div>
+          <div style="width: 30px; height: 2px; background: {{ dot1 }}; transition: background 0.4s;"></div>
+          <div style="width: 30px; height: 2px; background: {{ dot2 }}; transition: background 0.4s;"></div>
+          <div style="width: 30px; height: 2px; background: {{ dot3 }}; transition: background 0.4s;"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ industries ═══ -->
+  <section id="industries" data-screen-label="Industries" style="border-top: 1px solid rgba(56,217,245,0.1);">
+    <div style="max-width: 1440px; margin: 0 auto; padding: 130px 56px;">
+      <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 18px;">
+        <div style="display: flex; align-items: center; gap: 12px;">
+          <div style="width: 28px; height: 1px; background: #38d9f5;"></div>
+          <span style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.28em; color: #38d9f5;">WHO BUILDS WITH EXMAP</span>
+        </div>
+        <span style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: #3d4d58;">/ 002</span>
+      </div>
+      <h2 style="margin: 0 0 64px; font-size: clamp(36px, 3.2vw, 54px); font-weight: 700; text-transform: uppercase; max-width: 22ch; line-height: 1.04;">One model, every discipline</h2>
+      <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px;">
+        <div style="border: 1px solid rgba(56,217,245,0.12); background-color: #070c14; background-image: radial-gradient(circle at 1px 1px, rgba(56,217,245,0.055) 1px, transparent 1.6px), linear-gradient(180deg, #0a1119, #070c14); background-size: 22px 22px, 100% 100%; padding: 36px 32px; display: flex; flex-direction: column; gap: 16px; transition: all 0.3s; position: relative;" style-hover="border-color: rgba(56,217,245,0.45); transform: translateY(-4px); box-shadow: 0 18px 44px rgba(0,0,0,0.5), 0 0 30px rgba(56,217,245,0.08);">
+          <div style="position: absolute; top: -1px; left: 32px; width: 44px; height: 1px; background: #38d9f5;"></div>
+          <div style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: #5a6d78; letter-spacing: 0.2em;">/ 01</div>
+          <h3 style="margin: 0; font-size: 21px; font-weight: 700; letter-spacing: 0.05em;">URBAN PLANNING</h3>
+          <p style="margin: 0; font-size: 14px; line-height: 1.7; color: #8fa6b2;">Simulate districts before committing concrete. Test density, transit and shadow impact on the real city fabric.</p>
+        </div>
+        <div style="border: 1px solid rgba(56,217,245,0.12); background-color: #070c14; background-image: radial-gradient(circle at 1px 1px, rgba(56,217,245,0.055) 1px, transparent 1.6px), linear-gradient(180deg, #0a1119, #070c14); background-size: 22px 22px, 100% 100%; padding: 36px 32px; display: flex; flex-direction: column; gap: 16px; transition: all 0.3s; position: relative;" style-hover="border-color: rgba(56,217,245,0.45); transform: translateY(-4px); box-shadow: 0 18px 44px rgba(0,0,0,0.5), 0 0 30px rgba(56,217,245,0.08);">
+          <div style="position: absolute; top: -1px; left: 32px; width: 44px; height: 1px; background: #38d9f5;"></div>
+          <div style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: #5a6d78; letter-spacing: 0.2em;">/ 02</div>
+          <h3 style="margin: 0; font-size: 21px; font-weight: 700; letter-spacing: 0.05em;">ARCHITECTURE</h3>
+          <p style="margin: 0; font-size: 14px; line-height: 1.7; color: #8fa6b2;">Design in true context. Drop concepts into the live site model and walk clients through them the same day.</p>
+        </div>
+        <div style="border: 1px solid rgba(56,217,245,0.12); background-color: #070c14; background-image: radial-gradient(circle at 1px 1px, rgba(56,217,245,0.055) 1px, transparent 1.6px), linear-gradient(180deg, #0a1119, #070c14); background-size: 22px 22px, 100% 100%; padding: 36px 32px; display: flex; flex-direction: column; gap: 16px; transition: all 0.3s; position: relative;" style-hover="border-color: rgba(56,217,245,0.45); transform: translateY(-4px); box-shadow: 0 18px 44px rgba(0,0,0,0.5), 0 0 30px rgba(56,217,245,0.08);">
+          <div style="position: absolute; top: -1px; left: 32px; width: 44px; height: 1px; background: #38d9f5;"></div>
+          <div style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: #5a6d78; letter-spacing: 0.2em;">/ 03</div>
+          <h3 style="margin: 0; font-size: 21px; font-weight: 700; letter-spacing: 0.05em;">REAL ESTATE</h3>
+          <p style="margin: 0; font-size: 14px; line-height: 1.7; color: #8fa6b2;">Show buyers and boards the future, not a render. Interactive walkthroughs grounded in the actual site.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ testimonial ═══ -->
+  <section data-screen-label="Testimonial" style="border-top: 1px solid rgba(56,217,245,0.1); position: relative; overflow: hidden;">
+    <div style="position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); font-size: 380px; font-weight: 700; color: rgba(56,217,245,0.025); line-height: 1; pointer-events: none; font-family: 'Chakra Petch', sans-serif;">"</div>
+    <div style="max-width: 900px; margin: 0 auto; padding: 130px 56px; display: flex; flex-direction: column; gap: 26px; align-items: center; text-align: center; position: relative;">
+      <div style="width: 44px; height: 1px; background: #38d9f5;"></div>
+      <blockquote style="margin: 0; font-size: clamp(22px, 2.2vw, 30px); line-height: 1.55; font-weight: 400; color: #dfe9ef; text-wrap: balance;">We stopped arguing over screenshots. The whole review now happens on the model — the council saw exactly what we saw, and approved in one session.</blockquote>
+      <div style="display: flex; flex-direction: column; gap: 6px;">
+        <span style="font-weight: 700; letter-spacing: 0.12em; font-size: 15px;">JOAN LOREN</span>
+        <span style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.16em; color: #5a6d78;">DIRECTOR OF PLANNING · MERIDIAN CIVIC</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ case studies ═══ -->
+  <section id="cases" data-screen-label="Case studies" style="border-top: 1px solid rgba(56,217,245,0.1);">
+    <div style="max-width: 1440px; margin: 0 auto; padding: 130px 56px;">
+      <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 18px;">
+        <div style="display: flex; align-items: center; gap: 12px;">
+          <div style="width: 28px; height: 1px; background: #38d9f5;"></div>
+          <span style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.28em; color: #38d9f5;">RESOURCES</span>
+        </div>
+        <span style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: #3d4d58;">/ 003</span>
+      </div>
+      <h2 style="margin: 0 0 64px; font-size: clamp(36px, 3.2vw, 54px); font-weight: 700; text-transform: uppercase; line-height: 1.04;">See it in the field</h2>
+      <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px;">
+        <div style="border: 1px solid rgba(56,217,245,0.12); background-color: #070c14; background-image: radial-gradient(circle at 1px 1px, rgba(56,217,245,0.055) 1px, transparent 1.6px), linear-gradient(180deg, #0a1119, #070c14); background-size: 22px 22px, 100% 100%; display: flex; flex-direction: column; transition: all 0.3s;" style-hover="border-color: rgba(56,217,245,0.45); transform: translateY(-4px); box-shadow: 0 18px 44px rgba(0,0,0,0.5);">
+          <div style="height: 190px; position: relative; border-bottom: 1px solid rgba(56,217,245,0.1);">
+            <image-slot id="case-1" shape="rect" placeholder="case study visual"></image-slot>
+          </div>
+          <div style="padding: 26px; display: flex; flex-direction: column; gap: 12px; flex: 1;">
+            <div style="font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.26em; color: #5a6d78;">CASE STUDY</div>
+            <h3 style="margin: 0; font-size: 18px; font-weight: 700; line-height: 1.35;">Automatic 3D reconstruction for urban development</h3>
+            <a href="#" style="margin-top: auto; font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.16em; padding-top: 12px;">DOWNLOAD PDF ↓</a>
+          </div>
+        </div>
+        <div style="border: 1px solid rgba(56,217,245,0.12); background-color: #070c14; background-image: radial-gradient(circle at 1px 1px, rgba(56,217,245,0.055) 1px, transparent 1.6px), linear-gradient(180deg, #0a1119, #070c14); background-size: 22px 22px, 100% 100%; display: flex; flex-direction: column; transition: all 0.3s;" style-hover="border-color: rgba(56,217,245,0.45); transform: translateY(-4px); box-shadow: 0 18px 44px rgba(0,0,0,0.5);">
+          <div style="height: 190px; position: relative; border-bottom: 1px solid rgba(56,217,245,0.1);">
+            <image-slot id="case-2" shape="rect" placeholder="case study visual"></image-slot>
+          </div>
+          <div style="padding: 26px; display: flex; flex-direction: column; gap: 12px; flex: 1;">
+            <div style="font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.26em; color: #5a6d78;">CASE STUDY</div>
+            <h3 style="margin: 0; font-size: 18px; font-weight: 700; line-height: 1.35;">Simulating transit impact before breaking ground</h3>
+            <a href="#" style="margin-top: auto; font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.16em; padding-top: 12px;">DOWNLOAD PDF ↓</a>
+          </div>
+        </div>
+        <div style="border: 1px solid rgba(56,217,245,0.12); background-color: #070c14; background-image: radial-gradient(circle at 1px 1px, rgba(56,217,245,0.055) 1px, transparent 1.6px), linear-gradient(180deg, #0a1119, #070c14); background-size: 22px 22px, 100% 100%; display: flex; flex-direction: column; transition: all 0.3s;" style-hover="border-color: rgba(56,217,245,0.45); transform: translateY(-4px); box-shadow: 0 18px 44px rgba(0,0,0,0.5);">
+          <div style="height: 190px; position: relative; border-bottom: 1px solid rgba(56,217,245,0.1);">
+            <image-slot id="case-3" shape="rect" placeholder="case study visual"></image-slot>
+          </div>
+          <div style="padding: 26px; display: flex; flex-direction: column; gap: 12px; flex: 1;">
+            <div style="font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.26em; color: #5a6d78;">CASE STUDY</div>
+            <h3 style="margin: 0; font-size: 18px; font-weight: 700; line-height: 1.35;">Community review on a shared coastal model</h3>
+            <a href="#" style="margin-top: auto; font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.16em; padding-top: 12px;">DOWNLOAD PDF ↓</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ email cta ═══ -->
+  <section id="cta" data-screen-label="CTA" style="border-top: 1px solid rgba(56,217,245,0.1); position: relative; overflow: hidden;">
+    <div style="position: absolute; left: 50%; top: 50%; width: 1050px; height: 720px; transform: translate(-50%, -50%); border: 1.5px solid rgba(56,217,245,0.06); border-radius: 46% 54% 52% 48% / 52% 46% 54% 48%; pointer-events: none;"></div>
+    <div style="position: absolute; left: 50%; top: 50%; width: 760px; height: 510px; transform: translate(-50%, -50%); border: 1.5px solid rgba(56,217,245,0.1); border-radius: 52% 48% 46% 54% / 48% 54% 46% 52%; pointer-events: none;"></div>
+    <div style="position: absolute; left: 50%; top: 50%; width: 480px; height: 310px; transform: translate(-50%, -50%); border: 1.5px solid rgba(56,217,245,0.14); border-radius: 48% 52% 54% 46% / 54% 48% 52% 46%; pointer-events: none;"></div>
+    <div style="position: absolute; inset: 0; background: radial-gradient(ellipse 50% 60% at 50% 50%, rgba(56,217,245,0.05), transparent 70%); pointer-events: none;"></div>
+    <div style="max-width: 1440px; margin: 0 auto; padding: 150px 56px; display: flex; flex-direction: column; gap: 24px; align-items: center; text-align: center; position: relative;">
+      <div style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.34em; color: #38d9f5;">CREATE YOUR OWN REALITY TODAY</div>
+      <h2 style="margin: 0; font-size: clamp(38px, 4vw, 64px); font-weight: 700; text-transform: uppercase; line-height: 1.02; text-wrap: balance;">Step into your new dimension</h2>
+      <div style="display: flex; gap: 0; margin-top: 14px;">
+        <input type="email" placeholder="Email address..." style="font-family: 'IBM Plex Mono', monospace; font-size: 13px; padding: 16px 20px; width: 320px; background: rgba(7,12,20,0.85); border: 1px solid rgba(56,217,245,0.3); border-right: none; color: #dfe9ef; outline: none; transition: border-color 0.25s;" style-focus="border-color: #38d9f5;">
+        <button style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; letter-spacing: 0.16em; color: #04070c; background: #38d9f5; border: none; padding: 16px 28px; font-weight: 500; cursor: pointer; box-shadow: 0 0 30px rgba(56,217,245,0.3); transition: all 0.25s;" style-hover="background: #9beeff; box-shadow: 0 0 44px rgba(56,217,245,0.55);">START CREATING</button>
+      </div>
+      <div style="font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.18em; color: #3d4d58;">FREE FOR YOUR FIRST SITE · NO INSTALLS</div>
+    </div>
+  </section>
+
+  <!-- ═══ footer ═══ -->
+  <footer data-screen-label="Footer" style="border-top: 1px solid rgba(56,217,245,0.1); background: #030509;">
+    <div style="max-width: 1440px; margin: 0 auto; padding: 72px 56px 44px;">
+      <div style="display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 48px; margin-bottom: 60px;">
+        <div style="display: flex; flex-direction: column; gap: 16px;">
+          <div style="display: flex; align-items: center; gap: 11px;">
+            <div style="width: 20px; height: 20px; border: 2px solid #38d9f5; transform: rotate(45deg); display: grid; place-items: center;">
+              <div style="width: 5px; height: 5px; background: #38d9f5;"></div>
+            </div>
+            <span style="font-weight: 700; font-size: 15px; letter-spacing: 0.22em;">EXMAP</span>
+          </div>
+          <p style="margin: 0; font-size: 13px; line-height: 1.7; color: #5a6d78; max-width: 34ch;">The 3D reality planning platform. Visualize, plan and build the future on a high-resolution model of your reality.</p>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 14px; font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.14em;">
+          <span style="color: #dfe9ef; font-weight: 500; letter-spacing: 0.22em;">PLATFORM</span>
+          <a href="#" style="color: #5a6d78; transition: color 0.25s;" style-hover="color: #9beeff;">3D Mapping</a>
+          <a href="#" style="color: #5a6d78; transition: color 0.25s;" style-hover="color: #9beeff;">Data Layers</a>
+          <a href="#" style="color: #5a6d78; transition: color 0.25s;" style-hover="color: #9beeff;">Collaboration</a>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 14px; font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.14em;">
+          <span style="color: #dfe9ef; font-weight: 500; letter-spacing: 0.22em;">COMPANY</span>
+          <a href="#" style="color: #5a6d78; transition: color 0.25s;" style-hover="color: #9beeff;">About</a>
+          <a href="#" style="color: #5a6d78; transition: color 0.25s;" style-hover="color: #9beeff;">Careers</a>
+          <a href="#" style="color: #5a6d78; transition: color 0.25s;" style-hover="color: #9beeff;">Contact</a>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 14px; font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.14em;">
+          <span style="color: #dfe9ef; font-weight: 500; letter-spacing: 0.22em;">RESOURCES</span>
+          <a href="#" style="color: #5a6d78; transition: color 0.25s;" style-hover="color: #9beeff;">Case Studies</a>
+          <a href="#" style="color: #5a6d78; transition: color 0.25s;" style-hover="color: #9beeff;">Docs</a>
+          <a href="#" style="color: #5a6d78; transition: color 0.25s;" style-hover="color: #9beeff;">Community</a>
+        </div>
+      </div>
+      <div style="border-top: 1px solid rgba(56,217,245,0.08); padding-top: 24px; display: flex; justify-content: space-between; align-items: baseline; font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.2em; color: #3d4d58;">
+        <span>© 2026 EXMAP</span>
+        <span style="color: rgba(56,217,245,0.6);">STEP INTO YOUR NEW DIMENSION</span>
+      </div>
+    </div>
+  </footer>
+
+  <x-import component-from-global-scope="image-slot" from="./image-slot.js" style="display: none;" hint-size="0,0"></x-import>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{
+  &quot;accent&quot;: { &quot;editor&quot;: &quot;color&quot;, &quot;default&quot;: &quot;#38d9f5&quot;, &quot;options&quot;: [&quot;#38d9f5&quot;, &quot;#7c6cff&quot;, &quot;#3df5a6&quot;, &quot;#f5b03d&quot;], &quot;tsType&quot;: &quot;string&quot;, &quot;section&quot;: &quot;Look&quot; }
+}">
+class Component extends DCLogic {
+  state = { storyScene: 0 };
+
+  componentDidMount() {
+    this._observer = new IntersectionObserver((entries) => {
+      for (const e of entries) {
+        if (e.isIntersecting) {
+          const n = parseInt(e.target.getAttribute('data-chapter'), 10);
+          if (!isNaN(n)) this.setState({ storyScene: n });
+        }
+      }
+    }, { threshold: 0.5 });
+    this._retryObserve();
+  }
+
+  _retryObserve() {
+    const chapters = document.querySelectorAll('[data-chapter]');
+    if (chapters.length === 0) {
+      this._retryTimer = setTimeout(() => this._retryObserve(), 400);
+      return;
+    }
+    chapters.forEach(el => this._observer.observe(el));
+  }
+
+  componentWillUnmount() {
+    if (this._observer) this._observer.disconnect();
+    clearTimeout(this._retryTimer);
+  }
+
+  renderVals() {
+    const s = this.state.storyScene;
+    const accent = this.props.accent ?? '#38d9f5';
+    const vals = {
+      accent,
+      storyScene: s,
+      sectorLabel: ['A-01', 'B-02', 'C-03', 'D-04'][s],
+    };
+    for (let i = 0; i < 4; i++) {
+      vals['ch' + i + 'c'] = i === s ? accent : '#5a6d78';
+      vals['dot' + i] = i === s ? accent : 'rgba(143,166,178,0.25)';
+    }
+    return vals;
+  }
+}
+</script>
+</body>
+</html>

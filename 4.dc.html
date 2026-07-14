@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <title>Exmap — Hero v2, City Fly-in</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <script type="importmap">{"imports": {"three": "https://unpkg.com/three@0.161.0/build/three.module.js"}}</script>
+  <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;600;700&amp;family=IBM+Plex+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
+  <style>
+    html, body { margin: 0; padding: 0; background: #04070c; }
+    a { color: #38d9f5; text-decoration: none; }
+    a:hover { color: #9beeff; }
+    ::selection { background: #38d9f5; color: #04070c; }
+    input::placeholder { color: #5a6d78; }
+    @keyframes xPanelIn { from { opacity: 0; transform: translateY(-50%) translateX(-28px); } to { opacity: 1; transform: translateY(-50%) translateX(0); } }
+    @keyframes xMsgIn { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: none; } }
+    @keyframes xBob { 0%, 100% { transform: translate(-50%, 0); } 50% { transform: translate(-50%, 7px); } }
+    @keyframes xDot { 0%, 100% { opacity: 0.25; transform: translateY(0); } 50% { opacity: 1; transform: translateY(-3px); } }
+    @keyframes xGlow { 0%, 100% { opacity: 0.7; } 50% { opacity: 1; } }
+  </style>
+</helmet>
+
+<div data-screen-label="Hero v2 fly-in" style="font-family: 'Chakra Petch', sans-serif; color: #dfe9ef; position: relative;">
+
+  <!-- scroll driver -->
+  <div ref="{{ journeyRef }}" style="height: 340vh;"></div>
+
+  <!-- ═══ sky: real sunset photo ═══ -->
+  <div style="position: fixed; inset: 0; z-index: 0; background-image: url('assets/sky-pano.png'); background-size: cover; background-position: 25% 100%; background-repeat: no-repeat;"></div>
+  <div style="position: fixed; inset: 0; z-index: 0; background: linear-gradient(180deg, rgba(24,20,30,0.28) 0%, transparent 45%);"></div>
+
+  <!-- ═══ 3D city ═══ -->
+  <x-import component-from-global-scope="exmap-city" from="./exmap-city-real.js" accent="{{ accent }}" style="position: fixed; inset: 0; z-index: 1;" hint-size="100%,100%"></x-import>
+
+  <!-- vignette -->
+  <div style="position: fixed; inset: 0; z-index: 2; pointer-events: none; background: radial-gradient(ellipse 120% 90% at 50% 45%, transparent 58%, rgba(30,22,20,0.38) 100%);"></div>
+  <div style="position: fixed; inset: 0; z-index: 2; pointer-events: none; background: linear-gradient(180deg, rgba(20,16,22,0.4) 0%, transparent 16%, transparent 84%, rgba(28,18,14,0.3) 100%);"></div>
+
+  <!-- ═══ header ═══ -->
+  <header data-screen-label="Header" style="position: fixed; top: 0; left: 0; right: 0; z-index: 30; background: linear-gradient(180deg, rgba(4,7,12,0.75), rgba(4,7,12,0));">
+    
+  <div style="max-width: 1440px; margin: 0 auto; padding: 20px 56px; display: flex; align-items: center; justify-content: space-between;">
+      <div style="display: flex; align-items: center; gap: 12px;">
+        <div style="width: 22px; height: 22px; border: 2px solid #38d9f5; transform: rotate(45deg); display: grid; place-items: center; box-shadow: 0 0 18px rgba(56,217,245,0.35);">
+          <div style="width: 6px; height: 6px; background: #38d9f5;"></div>
+        </div>
+        <span style="font-weight: 700; font-size: 17px; letter-spacing: 0.22em;">EXMAP</span>
+      </div>
+      <nav style="display: flex; gap: 40px; font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.18em;">
+        <a href="#" style="color: #aebfc9; transition: color 0.25s;" style-hover="color: #ffffff;">PLATFORM</a>
+        <a href="#" style="color: #aebfc9; transition: color 0.25s;" style-hover="color: #ffffff;">COMPANY</a>
+        <a href="#" style="color: #aebfc9; transition: color 0.25s;" style-hover="color: #ffffff;">RESOURCES</a>
+      </nav>
+      <a href="#" style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.18em; color: #04070c; background: #38d9f5; padding: 11px 22px; border-radius: 10px; font-weight: 500; box-shadow: 0 0 24px rgba(56,217,245,0.28); transition: all 0.25s;" style-hover="background: #9beeff; box-shadow: 0 0 34px rgba(56,217,245,0.5); color: #04070c;">START CREATING</a>
+    </div></header>
+
+  <!-- ═══ headline overlay ═══ -->
+  
+
+  <!-- scroll hint -->
+  <div ref="{{ hintRef }}" style="position: fixed; bottom: 30px; left: 50%; z-index: 10; transform: translate(-50%, 0); animation: xBob 2.4s ease-in-out infinite; display: flex; flex-direction: column; align-items: center; gap: 8px; pointer-events: none; transition: opacity 0.5s; font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.3em; color: #ecd0a8; text-shadow: 0 1px 10px rgba(30,18,10,0.6);">
+    <span>SCROLL TO DESCEND</span>
+    <span style="color: #ffce9a;">▼</span>
+  </div>
+
+  <!-- end-of-descent caption -->
+  <div ref="{{ capRef }}" style="position: fixed; bottom: 34px; left: 50%; transform: translate(-50%, 14px); z-index: 10; opacity: 0; transition: opacity 0.6s, transform 0.6s; pointer-events: none; font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.26em; color: #38d9f5; text-shadow: 0 0 18px rgba(56,217,245,0.5); background: rgba(4,7,12,0.7); padding: 12px 22px; border: 1px solid rgba(56,217,245,0.25); border-radius: 999px; box-shadow: 0 0 30px rgba(56,217,245,0.15);">3 LIVE THREADS ON THE MODEL — SELECT A MARKER</div>
+
+  <!-- HUD -->
+  <div ref="{{ hudRef }}" style="position: fixed; bottom: 30px; left: 40px; z-index: 10; pointer-events: none; font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.2em; color: rgba(255,226,188,0.7); text-shadow: 0 1px 8px rgba(30,18,10,0.55);">ALT 120M · PITCH −8° · MODEL LIVE</div>
+  <div style="position: fixed; bottom: 30px; right: 40px; z-index: 10; pointer-events: none; font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.2em; color: rgba(255,226,188,0.75); text-shadow: 0 1px 8px rgba(30,18,10,0.55);">LIVE MODEL · 34.05°N 118.24°W</div>
+
+  <!-- ═══ panel: p1 urban planning — sunlight study ═══ -->
+  <sc-if value="{{ p1 }}" hint-placeholder-val="{{ false }}">
+    <div data-screen-label="Thread — urban planning" style="position: fixed; left: 56px; top: 50%; transform: translateY(-50%); width: 400px; z-index: 35; display: flex; flex-direction: column; gap: 10px; animation: xPanelIn 0.55s cubic-bezier(0.2, 0.8, 0.2, 1) 0.3s both;">
+      <div style="position: relative; border: 1px solid rgba(255,84,104,0.6); background: rgba(44,9,16,0.92); border-radius: 14px; box-shadow: 0 0 36px rgba(255,84,104,0.18), 0 18px 50px rgba(0,0,0,0.45); padding: 15px 18px; display: flex; gap: 12px; align-items: flex-start;">
+        <div style="width: 10px; height: 10px; border-radius: 50%; background: #ff5468; box-shadow: 0 0 12px #ff5468; margin-top: 4px; flex-shrink: 0;"></div>
+        <div style="flex: 1;">
+          <div style="font-weight: 700; font-size: 13px; letter-spacing: 0.06em; color: #ffd7db;">SUNLIGHT STUDY — FAILED</div>
+          <div style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: #ff9aa5; margin-top: 5px; line-height: 1.5;">Proposed massing adds 3.2h shade on Elm Park at equinox</div>
+        </div>
+        <button onClick="{{ close }}" style="background: none; border: 1px solid rgba(255,255,255,0.2); color: #dfe9ef; width: 24px; height: 24px; border-radius: 7px; cursor: pointer; font-size: 12px; line-height: 1; flex-shrink: 0;" style-hover="border-color: #ff5468; color: #ff5468;">✕</button>
+        <div style="position: absolute; right: -64px; top: 50%; width: 64px; height: 1px; background: #ff5468; opacity: 0.7;"></div>
+      </div>
+      <sc-if value="{{ s1 }}" hint-placeholder-val="{{ false }}">
+        <div style="background: rgba(7,12,20,0.94); border: 1px solid rgba(255,255,255,0.08); border-radius: 14px; box-shadow: 0 14px 40px rgba(0,0,0,0.4); padding: 14px 16px; display: flex; gap: 12px; animation: xMsgIn 0.4s ease both;">
+          <div style="width: 30px; height: 30px; border-radius: 9px; background: #22303c; display: grid; place-items: center; font-size: 11px; font-weight: 700; color: #9beeff; flex-shrink: 0;">DR</div>
+          <div>
+            <div style="display: flex; align-items: baseline; gap: 8px; flex-wrap: wrap;"><span style="font-weight: 600; font-size: 13px;">Dana Reyes</span><span style="font-family: 'IBM Plex Mono', monospace; font-size: 8px; letter-spacing: 0.1em; color: #9beeff; border: 1px solid rgba(155,238,255,0.35); padding: 2px 5px; border-radius: 4px;">URBAN PLANNER</span><span style="font-family: 'IBM Plex Mono', monospace; font-size: 9px; color: #5a6d78;">9:16 AM</span></div>
+            <div style="font-size: 13px; color: #aebfc9; margin-top: 4px; line-height: 1.55;"><span style="color: #38d9f5;">@exmap</span> which floors break the sun-plane? Council hearing is Thursday.</div>
+          </div>
+        </div>
+      </sc-if>
+      <sc-if value="{{ s2 }}" hint-placeholder-val="{{ false }}">
+        <div style="background: rgba(30,10,16,0.94); border: 1px solid rgba(255,84,104,0.35); border-radius: 14px; box-shadow: 0 0 30px rgba(255,84,104,0.12), 0 14px 40px rgba(0,0,0,0.4); padding: 14px 16px; display: flex; flex-direction: column; gap: 12px; animation: xMsgIn 0.4s ease both;">
+          <div style="display: flex; gap: 12px;">
+            <div style="width: 30px; height: 30px; border: 2px solid #38d9f5; transform: rotate(45deg); display: grid; place-items: center; flex-shrink: 0; margin: 2px;"><div style="width: 5px; height: 5px; background: #38d9f5;"></div></div>
+            <div>
+              <div style="display: flex; align-items: baseline; gap: 8px;"><span style="font-weight: 600; font-size: 13px;">Exmap</span><span style="font-family: 'IBM Plex Mono', monospace; font-size: 8px; letter-spacing: 0.1em; color: #04070c; background: #8fa6b2; padding: 2px 5px; border-radius: 4px;">APP</span><span style="font-family: 'IBM Plex Mono', monospace; font-size: 9px; color: #5a6d78;">9:17 AM</span></div>
+              <div style="font-size: 13px; color: #d5c3c7; margin-top: 4px; line-height: 1.55;">Floors <span style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; background: rgba(255,255,255,0.08); padding: 1px 6px;">38–52</span> exceed the sun-plane envelope. A 6m setback clears it.</div>
+            </div>
+          </div>
+          <div style="border: 1px solid rgba(255,255,255,0.08); border-radius: 10px; background: rgba(4,7,12,0.5); padding: 12px 14px;">
+            <div style="font-family: 'IBM Plex Mono', monospace; font-size: 9px; letter-spacing: 0.22em; color: #8fa6b2; margin-bottom: 10px;">SHADOW HOURS · BY FLOOR</div>
+            <div style="display: flex; align-items: flex-end; gap: 3px; height: 46px;">
+              <div style="width: 100%; height: 8px; background: #35e08c;"></div>
+              <div style="width: 100%; height: 11px; background: #35e08c;"></div>
+              <div style="width: 100%; height: 14px; background: #35e08c;"></div>
+              <div style="width: 100%; height: 18px; background: #35e08c;"></div>
+              <div style="width: 100%; height: 24px; background: #ffb454;"></div>
+              <div style="width: 100%; height: 31px; background: #ffb454;"></div>
+              <div style="width: 100%; height: 38px; background: #ff5468;"></div>
+              <div style="width: 100%; height: 44px; background: #ff5468;"></div>
+              <div style="width: 100%; height: 41px; background: #ff5468;"></div>
+              <div style="width: 100%; height: 33px; background: #ffb454;"></div>
+              <div style="width: 100%; height: 24px; background: #ffb454;"></div>
+              <div style="width: 100%; height: 16px; background: #35e08c;"></div>
+              <div style="width: 100%; height: 11px; background: #35e08c;"></div>
+              <div style="width: 100%; height: 8px; background: #35e08c;"></div>
+            </div>
+            <div style="display: flex; justify-content: space-between; margin-top: 8px; font-family: 'IBM Plex Mono', monospace; font-size: 9px; color: #5a6d78;"><span>FL 30</span><span>FL 45</span><span>FL 60</span></div>
+          </div>
+        </div>
+      </sc-if>
+      <sc-if value="{{ s3 }}" hint-placeholder-val="{{ false }}">
+        <div style="display: flex; gap: 8px; animation: xMsgIn 0.4s ease both;">
+          <input placeholder="Reply to thread…" style="flex: 1; background: rgba(7,12,20,0.94); border: 1px solid rgba(255,255,255,0.12); color: #dfe9ef; font-family: 'IBM Plex Mono', monospace; font-size: 11px; padding: 12px 14px; border-radius: 10px; outline: none;">
+          <button style="background: #38d9f5; color: #04070c; border: none; font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.16em; font-weight: 500; padding: 0 18px; border-radius: 10px; box-shadow: 0 0 18px rgba(56,217,245,0.35); cursor: pointer;" style-hover="background: #9beeff;">SEND</button>
+        </div>
+      </sc-if>
+      <sc-if value="{{ typing }}" hint-placeholder-val="{{ false }}">
+        <div style="display: flex; gap: 6px; align-items: center; background: rgba(7,12,20,0.94); border: 1px solid rgba(255,255,255,0.08); border-radius: 999px; box-shadow: 0 10px 30px rgba(0,0,0,0.4); padding: 12px 16px; width: fit-content; animation: xMsgIn 0.3s ease both;">
+          <div style="width: 6px; height: 6px; border-radius: 50%; background: #8fa6b2; animation: xDot 1s ease-in-out infinite;"></div>
+          <div style="width: 6px; height: 6px; border-radius: 50%; background: #8fa6b2; animation: xDot 1s ease-in-out 0.15s infinite;"></div>
+          <div style="width: 6px; height: 6px; border-radius: 50%; background: #8fa6b2; animation: xDot 1s ease-in-out 0.3s infinite;"></div>
+        </div>
+      </sc-if>
+    </div>
+  </sc-if>
+
+  <!-- ═══ panel: p2 architecture — design review ═══ -->
+  <sc-if value="{{ p2 }}" hint-placeholder-val="{{ false }}">
+    <div data-screen-label="Thread — architecture" style="position: fixed; left: 56px; top: 50%; transform: translateY(-50%); width: 400px; z-index: 35; display: flex; flex-direction: column; gap: 10px; animation: xPanelIn 0.55s cubic-bezier(0.2, 0.8, 0.2, 1) 0.3s both;">
+      <div style="position: relative; border: 1px solid rgba(53,224,140,0.55); background: rgba(7,32,22,0.92); border-radius: 14px; box-shadow: 0 0 36px rgba(53,224,140,0.16), 0 18px 50px rgba(0,0,0,0.45); padding: 15px 18px; display: flex; gap: 12px; align-items: flex-start;">
+        <div style="width: 10px; height: 10px; border-radius: 50%; background: #35e08c; box-shadow: 0 0 12px #35e08c; margin-top: 4px; flex-shrink: 0;"></div>
+        <div style="flex: 1;">
+          <div style="font-weight: 700; font-size: 13px; letter-spacing: 0.06em; color: #c9f5df;">DESIGN REVIEW — APPROVED</div>
+          <div style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: #7fd9ac; margin-top: 5px; line-height: 1.5;">Facade revision V4 cleared wind + massing checks</div>
+        </div>
+        <button onClick="{{ close }}" style="background: none; border: 1px solid rgba(255,255,255,0.2); color: #dfe9ef; width: 24px; height: 24px; border-radius: 7px; cursor: pointer; font-size: 12px; line-height: 1; flex-shrink: 0;" style-hover="border-color: #35e08c; color: #35e08c;">✕</button>
+        <div style="position: absolute; right: -64px; top: 50%; width: 64px; height: 1px; background: #35e08c; opacity: 0.7;"></div>
+      </div>
+      <sc-if value="{{ s1 }}" hint-placeholder-val="{{ false }}">
+        <div style="background: rgba(7,12,20,0.94); border: 1px solid rgba(255,255,255,0.08); border-radius: 14px; box-shadow: 0 14px 40px rgba(0,0,0,0.4); padding: 16px; display: flex; flex-direction: column; gap: 16px; animation: xMsgIn 0.4s ease both;">
+          <div>
+            <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 8px;">
+              <span style="font-size: 13px; font-weight: 600;">Massing envelope</span>
+              <span style="font-family: 'IBM Plex Mono', monospace; font-size: 9px; letter-spacing: 0.14em; color: #35e08c;">PASS</span>
+            </div>
+            <div style="display: flex; gap: 2px; height: 14px;">
+              <div style="flex: 1; background: #35e08c;"></div><div style="flex: 1; background: #35e08c;"></div><div style="flex: 1; background: #35e08c;"></div><div style="flex: 1; background: #35e08c;"></div><div style="flex: 1; background: #35e08c;"></div><div style="flex: 1; background: #ffb454;"></div><div style="flex: 1; background: #35e08c;"></div><div style="flex: 1; background: #35e08c;"></div><div style="flex: 1; background: #35e08c;"></div><div style="flex: 1; background: #35e08c;"></div><div style="flex: 1; background: #35e08c;"></div><div style="flex: 1; background: #35e08c;"></div><div style="flex: 1; background: #35e08c;"></div><div style="flex: 1; background: #35e08c;"></div><div style="flex: 1; background: #35e08c;"></div><div style="flex: 1; background: #35e08c;"></div><div style="flex: 1; background: #35e08c;"></div><div style="flex: 1; background: #35e08c;"></div>
+            </div>
+            <div style="display: flex; justify-content: space-between; margin-top: 6px; font-family: 'IBM Plex Mono', monospace; font-size: 9px; color: #5a6d78;"><span>30 RUNS</span><span>TODAY</span></div>
+          </div>
+          <div>
+            <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 8px;">
+              <span style="font-size: 13px; font-weight: 600;">Wind comfort</span>
+              <span style="font-family: 'IBM Plex Mono', monospace; font-size: 9px; letter-spacing: 0.14em; color: #35e08c;">PASS</span>
+            </div>
+            <div style="display: flex; gap: 2px; height: 14px;">
+              <div style="flex: 1; background: #35e08c;"></div><div style="flex: 1; background: #35e08c;"></div><div style="flex: 1; background: #ffb454;"></div><div style="flex: 1; background: #35e08c;"></div><div style="flex: 1; background: #35e08c;"></div><div style="flex: 1; background: #35e08c;"></div><div style="flex: 1; background: #35e08c;"></div><div style="flex: 1; background: #35e08c;"></div><div style="flex: 1; background: #35e08c;"></div><div style="flex: 1; background: #35e08c;"></div><div style="flex: 1; background: #35e08c;"></div><div style="flex: 1; background: #35e08c;"></div><div style="flex: 1; background: #35e08c;"></div><div style="flex: 1; background: #35e08c;"></div><div style="flex: 1; background: #35e08c;"></div><div style="flex: 1; background: #35e08c;"></div><div style="flex: 1; background: #35e08c;"></div><div style="flex: 1; background: #35e08c;"></div>
+            </div>
+            <div style="display: flex; justify-content: space-between; margin-top: 6px; font-family: 'IBM Plex Mono', monospace; font-size: 9px; color: #5a6d78;"><span>30 RUNS</span><span>TODAY</span></div>
+          </div>
+        </div>
+      </sc-if>
+      <sc-if value="{{ s2 }}" hint-placeholder-val="{{ false }}">
+        <div style="background: rgba(7,12,20,0.94); border: 1px solid rgba(255,255,255,0.08); border-radius: 14px; box-shadow: 0 14px 40px rgba(0,0,0,0.4); padding: 14px 16px; display: flex; gap: 12px; animation: xMsgIn 0.4s ease both;">
+          <div style="width: 30px; height: 30px; border-radius: 9px; background: #2c3a2e; display: grid; place-items: center; font-size: 11px; font-weight: 700; color: #a8eec5; flex-shrink: 0;">LB</div>
+          <div>
+            <div style="display: flex; align-items: baseline; gap: 8px; flex-wrap: wrap;"><span style="font-weight: 600; font-size: 13px;">Lena Brandt</span><span style="font-family: 'IBM Plex Mono', monospace; font-size: 8px; letter-spacing: 0.1em; color: #a8eec5; border: 1px solid rgba(168,238,197,0.35); padding: 2px 5px; border-radius: 4px;">ARCHITECT</span><span style="font-family: 'IBM Plex Mono', monospace; font-size: 9px; color: #5a6d78;">9:20 AM</span></div>
+            <div style="font-size: 13px; color: #aebfc9; margin-top: 4px; line-height: 1.55;">V4 setbacks read beautifully from street level. Locking the facade grid →</div>
+          </div>
+        </div>
+      </sc-if>
+      <sc-if value="{{ typing }}" hint-placeholder-val="{{ false }}">
+        <div style="display: flex; gap: 6px; align-items: center; background: rgba(7,12,20,0.94); border: 1px solid rgba(255,255,255,0.08); border-radius: 999px; box-shadow: 0 10px 30px rgba(0,0,0,0.4); padding: 12px 16px; width: fit-content; animation: xMsgIn 0.3s ease both;">
+          <div style="width: 6px; height: 6px; border-radius: 50%; background: #8fa6b2; animation: xDot 1s ease-in-out infinite;"></div>
+          <div style="width: 6px; height: 6px; border-radius: 50%; background: #8fa6b2; animation: xDot 1s ease-in-out 0.15s infinite;"></div>
+          <div style="width: 6px; height: 6px; border-radius: 50%; background: #8fa6b2; animation: xDot 1s ease-in-out 0.3s infinite;"></div>
+        </div>
+      </sc-if>
+    </div>
+  </sc-if>
+
+  <!-- ═══ panel: p3 real estate — feasibility ═══ -->
+  <sc-if value="{{ p3 }}" hint-placeholder-val="{{ false }}">
+    <div data-screen-label="Thread — real estate" style="position: fixed; left: 56px; top: 50%; transform: translateY(-50%); width: 400px; z-index: 35; display: flex; flex-direction: column; gap: 10px; animation: xPanelIn 0.55s cubic-bezier(0.2, 0.8, 0.2, 1) 0.3s both;">
+      <div style="position: relative; border: 1px solid rgba(56,217,245,0.55); background: rgba(6,26,34,0.92); border-radius: 14px; box-shadow: 0 0 36px rgba(56,217,245,0.18), 0 18px 50px rgba(0,0,0,0.45); padding: 15px 18px; display: flex; gap: 12px; align-items: flex-start;">
+        <div style="width: 10px; height: 10px; border-radius: 50%; background: #38d9f5; box-shadow: 0 0 12px #38d9f5; margin-top: 4px; flex-shrink: 0;"></div>
+        <div style="flex: 1;">
+          <div style="font-weight: 700; font-size: 13px; letter-spacing: 0.06em; color: #c9eff8;">FEASIBILITY — PARCEL 41-B</div>
+          <div style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: #7fcfe0; margin-top: 5px; line-height: 1.5;">Mixed-use scheme · projected yield +8.2%</div>
+        </div>
+        <button onClick="{{ close }}" style="background: none; border: 1px solid rgba(255,255,255,0.2); color: #dfe9ef; width: 24px; height: 24px; border-radius: 7px; cursor: pointer; font-size: 12px; line-height: 1; flex-shrink: 0;" style-hover="border-color: #38d9f5; color: #38d9f5;">✕</button>
+        <div style="position: absolute; right: -64px; top: 50%; width: 64px; height: 1px; background: #38d9f5; opacity: 0.7;"></div>
+      </div>
+      <sc-if value="{{ s1 }}" hint-placeholder-val="{{ false }}">
+        <div style="background: rgba(7,12,20,0.94); border: 1px solid rgba(255,255,255,0.08); border-radius: 14px; box-shadow: 0 14px 40px rgba(0,0,0,0.4); padding: 8px 16px; animation: xMsgIn 0.4s ease both;">
+          <div style="display: flex; justify-content: space-between; align-items: center; padding: 11px 0; border-bottom: 1px solid rgba(255,255,255,0.06);">
+            <span style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.14em; color: #8fa6b2;">FAR</span>
+            <span style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; color: #dfe9ef;">4.2 <span style="color: #5a6d78;">/ 4.5 MAX</span></span>
+          </div>
+          <div style="display: flex; justify-content: space-between; align-items: center; padding: 11px 0; border-bottom: 1px solid rgba(255,255,255,0.06);">
+            <span style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.14em; color: #8fa6b2;">UNITS</span>
+            <span style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; color: #dfe9ef;">312</span>
+          </div>
+          <div style="display: flex; justify-content: space-between; align-items: center; padding: 11px 0; border-bottom: 1px solid rgba(255,255,255,0.06);">
+            <span style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.14em; color: #8fa6b2;">ABSORPTION</span>
+            <span style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; color: #dfe9ef;">14 MO</span>
+          </div>
+          <div style="display: flex; justify-content: space-between; align-items: center; padding: 11px 0;">
+            <span style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.14em; color: #38d9f5;">PROJECTED YIELD</span>
+            <span style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; color: #38d9f5;">+8.2%</span>
+          </div>
+        </div>
+      </sc-if>
+      <sc-if value="{{ s2 }}" hint-placeholder-val="{{ false }}">
+        <div style="background: rgba(7,12,20,0.94); border: 1px solid rgba(255,255,255,0.08); border-radius: 14px; box-shadow: 0 14px 40px rgba(0,0,0,0.4); padding: 14px 16px; display: flex; gap: 12px; animation: xMsgIn 0.4s ease both;">
+          <div style="width: 30px; height: 30px; border-radius: 9px; background: #33313f; display: grid; place-items: center; font-size: 11px; font-weight: 700; color: #cfc4f5; flex-shrink: 0;">NP</div>
+          <div>
+            <div style="display: flex; align-items: baseline; gap: 8px; flex-wrap: wrap;"><span style="font-weight: 600; font-size: 13px;">Noa Peretz</span><span style="font-family: 'IBM Plex Mono', monospace; font-size: 8px; letter-spacing: 0.1em; color: #cfc4f5; border: 1px solid rgba(207,196,245,0.35); padding: 2px 5px; border-radius: 4px;">DEVELOPER</span><span style="font-family: 'IBM Plex Mono', monospace; font-size: 9px; color: #5a6d78;">9:21 AM</span></div>
+            <div style="font-size: 13px; color: #aebfc9; margin-top: 4px; line-height: 1.55;"><span style="color: #38d9f5;">@exmap</span> compare yield if floors 2–5 swap to retail.</div>
+          </div>
+        </div>
+      </sc-if>
+      <sc-if value="{{ s3 }}" hint-placeholder-val="{{ false }}">
+        <div style="background: rgba(6,22,30,0.94); border: 1px solid rgba(56,217,245,0.3); border-radius: 14px; box-shadow: 0 0 30px rgba(56,217,245,0.14), 0 14px 40px rgba(0,0,0,0.4); padding: 14px 16px; display: flex; flex-direction: column; gap: 12px; animation: xMsgIn 0.4s ease both;">
+          <div style="display: flex; gap: 12px;">
+            <div style="width: 30px; height: 30px; border: 2px solid #38d9f5; transform: rotate(45deg); display: grid; place-items: center; flex-shrink: 0; margin: 2px;"><div style="width: 5px; height: 5px; background: #38d9f5;"></div></div>
+            <div>
+              <div style="display: flex; align-items: baseline; gap: 8px;"><span style="font-weight: 600; font-size: 13px;">Exmap</span><span style="font-family: 'IBM Plex Mono', monospace; font-size: 8px; letter-spacing: 0.1em; color: #04070c; background: #8fa6b2; padding: 2px 5px; border-radius: 4px;">APP</span><span style="font-family: 'IBM Plex Mono', monospace; font-size: 9px; color: #5a6d78;">9:22 AM</span></div>
+              <div style="font-size: 13px; color: #c3dee8; margin-top: 4px; line-height: 1.55;">Retail swap adds <span style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; background: rgba(255,255,255,0.08); padding: 1px 6px;">+2.1%</span> yield, extends absorption by 3 weeks.</div>
+            </div>
+          </div>
+          <button style="align-self: flex-start; background: none; border: 1px solid rgba(56,217,245,0.5); color: #38d9f5; font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.16em; padding: 10px 18px; border-radius: 10px; cursor: pointer; transition: all 0.25s;" style-hover="background: rgba(56,217,245,0.1); border-color: #38d9f5;">RUN COMPARISON →</button>
+        </div>
+      </sc-if>
+      <sc-if value="{{ typing }}" hint-placeholder-val="{{ false }}">
+        <div style="display: flex; gap: 6px; align-items: center; background: rgba(7,12,20,0.94); border: 1px solid rgba(255,255,255,0.08); border-radius: 999px; box-shadow: 0 10px 30px rgba(0,0,0,0.4); padding: 12px 16px; width: fit-content; animation: xMsgIn 0.3s ease both;">
+          <div style="width: 6px; height: 6px; border-radius: 50%; background: #8fa6b2; animation: xDot 1s ease-in-out infinite;"></div>
+          <div style="width: 6px; height: 6px; border-radius: 50%; background: #8fa6b2; animation: xDot 1s ease-in-out 0.15s infinite;"></div>
+          <div style="width: 6px; height: 6px; border-radius: 50%; background: #8fa6b2; animation: xDot 1s ease-in-out 0.3s infinite;"></div>
+        </div>
+      </sc-if>
+    </div>
+  </sc-if>
+
+  <!-- ═══ loading screen (last in DOM, top z) ═══ -->
+  <sc-if value="{{ showLoader }}" hint-placeholder-val="{{ true }}">
+    <div ref="{{ loaderRef }}" data-screen-label="Loading" style="position: fixed; inset: 0; z-index: 60; background: #030509; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 30px; transition: opacity 0.7s;">
+      <div style="width: 1px; height: 90px; background: linear-gradient(180deg, transparent, #38d9f5); position: absolute; top: 0; left: 50%;"></div>
+      <div style="width: 30px; height: 30px; border: 2px solid #38d9f5; transform: rotate(45deg); display: grid; place-items: center; box-shadow: 0 0 30px rgba(56,217,245,0.5); animation: xGlow 1.8s ease-in-out infinite;">
+        <div style="width: 8px; height: 8px; background: #38d9f5;"></div>
+      </div>
+      <div style="text-align: center; display: flex; flex-direction: column; gap: 14px; align-items: center;">
+        <div style="font-size: clamp(34px, 3.6vw, 54px); font-weight: 700; text-transform: uppercase; line-height: 1.05; letter-spacing: 0.02em; color: #38d9f5; text-shadow: 0 0 34px rgba(56,217,245,0.65), 0 0 80px rgba(56,217,245,0.3);">Exmap is initializing</div>
+        <div style="font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.3em; color: #5a6d78;">COMPILING HIGH-RESOLUTION MODEL — 34.05°N 118.24°W</div>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 10px; align-items: flex-start;">
+        <div style="position: relative; width: 280px; height: 22px; border: 1px solid rgba(56,217,245,0.4); border-radius: 999px; padding: 3px;">
+          <div ref="{{ barRef }}" style="height: 100%; width: 0%; border-radius: 999px; background: #38d9f5; box-shadow: 0 0 16px rgba(56,217,245,0.6); transition: width 0.2s;"></div>
+          <div style="position: absolute; inset: 3px; border-radius: 999px; background-image: repeating-linear-gradient(90deg, transparent 0px, transparent 18px, #030509 18px, #030509 21px);"></div>
+        </div>
+        <div ref="{{ pctRef }}" style="font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.2em; color: #38d9f5;">0%</div>
+      </div>
+    </div>
+  </sc-if>
+
+<div ref="{{ heroRef }}" style="position: fixed; inset: 0; z-index: 10; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 26px; text-align: center; pointer-events: none; will-change: transform, opacity; padding: 0 56px">
+    <div style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.34em; color: #ffd9a8; text-shadow: 0 1px 12px rgba(30,16,8,0.7);">— THE 3D REALITY PLANNING PLATFORM —</div>
+    <h1 style="margin: 0; font-size: clamp(52px, 7.4vw, 122px); line-height: 0.96; font-weight: 700; text-transform: uppercase; letter-spacing: 0.005em; max-width: 12ch; text-wrap: balance; color: #fff8ee; text-shadow: 0 14px 60px rgba(25,14,10,0.75), 0 3px 22px rgba(25,14,10,0.6);">Own your reality</h1>
+    <p style="margin: 0; font-size: 17px; line-height: 1.65; color: #f3ddc0; max-width: 52ch; text-shadow: 0 2px 16px rgba(25,14,10,0.7);">Visualize, plan and build the future on a high-resolution 3D model of your reality.</p>
+  </div></div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{
+  &quot;accent&quot;: { &quot;editor&quot;: &quot;color&quot;, &quot;default&quot;: &quot;#38d9f5&quot;, &quot;options&quot;: [&quot;#38d9f5&quot;, &quot;#7c5cff&quot;, &quot;#35e08c&quot;, &quot;#ffb454&quot;], &quot;tsType&quot;: &quot;string&quot;, &quot;section&quot;: &quot;Look&quot; },
+  &quot;journeyVh&quot;: { &quot;editor&quot;: &quot;range&quot;, &quot;default&quot;: 340, &quot;min&quot;: 240, &quot;max&quot;: 520, &quot;step&quot;: 20, &quot;unit&quot;: &quot;vh&quot;, &quot;tsType&quot;: &quot;number&quot;, &quot;section&quot;: &quot;Scroll&quot; },
+  &quot;showHud&quot;: { &quot;editor&quot;: &quot;boolean&quot;, &quot;default&quot;: true, &quot;tsType&quot;: &quot;boolean&quot;, &quot;section&quot;: &quot;Scroll&quot; }
+}">
+class Component extends DCLogic {
+  state = { active: null, step: 0, loaded: false };
+
+  componentDidMount() {
+    // find the upgraded city element and wire events
+    this._findCity = setInterval(() => {
+      const el = document.querySelector('exmap-city');
+      if (el && el.setProgress && !this._city) {
+        this._city = el;
+        el.addEventListener('pinselect', (e) => this._open(e.detail.id));
+        this._scroll();
+      }
+      if (this._city && this._city._ready) {
+        this._cityReady = true;
+        clearInterval(this._findCity);
+      }
+    }, 150);
+
+    // loading screen: fake progress that completes when the city is ready
+    this._t0 = Date.now();
+    this._pct = 0;
+    this._loadTimer = setInterval(() => {
+      if (this.state.loaded) { clearInterval(this._loadTimer); return; }
+      const target = this._cityReady ? 100 : 86;
+      this._pct = Math.min(target, this._pct + (target - this._pct) * 0.07 + 0.9);
+      if (this._bar) this._bar.style.width = `${this._pct}%`;
+      if (this._pctEl) this._pctEl.textContent = `${Math.round(this._pct)}%`;
+      if (this._pct >= 99.5 && Date.now() - this._t0 > 1500 && !this._fading) {
+        this._fading = true;
+        if (this._loader) this._loader.style.opacity = '0';
+        setTimeout(() => this.setState({ loaded: true }), 750);
+      }
+    }, 80);
+
+    if (this._journey) this._journey.style.height = `${this.props.journeyVh ?? 340}vh`;
+
+    this._onScroll = () => this._scroll();
+    window.addEventListener('scroll', this._onScroll, { passive: true });
+    window.addEventListener('resize', this._onScroll);
+    this._onKey = (e) => { if (e.key === 'Escape') this._close(); };
+    window.addEventListener('keydown', this._onKey);
+    this._scroll();
+  }
+
+  componentWillUnmount() {
+    clearInterval(this._findCity);
+    clearInterval(this._loadTimer);
+    this._clearTimers();
+    window.removeEventListener('scroll', this._onScroll);
+    window.removeEventListener('resize', this._onScroll);
+    window.removeEventListener('keydown', this._onKey);
+  }
+
+  _clearTimers() {
+    (this._timers || []).forEach(clearTimeout);
+    this._timers = [];
+  }
+
+  _open(id) {
+    this._clearTimers();
+    this._focusScroll = window.scrollY;
+    this.setState({ active: id, step: 0 }, () => this._scroll());
+    // stage the conversation like it is happening live
+    const totals = { p1: 3, p2: 2, p3: 3 };
+    const delays = [1100, 2300, 3400];
+    for (let i = 0; i < (totals[id] || 0); i++) {
+      this._timers.push(setTimeout(() => this.setState({ step: i + 1 }), delays[i]));
+    }
+  }
+
+  _scroll() {
+    const j = this._journey;
+    if (!j) return;
+    const total = Math.max(1, j.offsetHeight - window.innerHeight);
+    const p = Math.max(0, Math.min(1, window.scrollY / total));
+    this._p = p;
+
+    if (this._city && this._city.setProgress) this._city.setProgress(p);
+
+    if (this._hero) {
+      this._hero.style.opacity = String(Math.max(0, 1 - p * 2.4));
+      this._hero.style.transform = `translateY(${-p * 55}vh)`;
+    }
+    if (this._hint) this._hint.style.opacity = p < 0.04 ? '1' : '0';
+    if (this._cap) {
+      const on = p > 0.85 && !this.state.active;
+      this._cap.style.opacity = on ? '1' : '0';
+      this._cap.style.transform = `translate(-50%, ${on ? 0 : 14}px)`;
+    }
+    if (this._hud) {
+      this._hud.style.display = (this.props.showHud ?? true) ? 'block' : 'none';
+      this._hud.textContent = `ALT ${120 + Math.round(360 * p)}M · PITCH −${8 + Math.round(34 * p)}° · MODEL LIVE`;
+    }
+    // scrolling away closes an open thread
+    if (this.state.active && Math.abs(window.scrollY - this._focusScroll) > 140) this._close();
+  }
+
+  _close() {
+    if (!this.state.active) return;
+    this._clearTimers();
+    this.setState({ active: null, step: 0 }, () => this._scroll());
+    if (this._city && this._city.clearFocus) this._city.clearFocus();
+  }
+
+  renderVals() {
+    const a = this.state.active;
+    const step = this.state.step;
+    const typingTotals = { p1: 2, p2: 2, p3: 3 };
+    return {
+      accent: this.props.accent ?? '#38d9f5',
+      journeyRef: (el) => { this._journey = el; },
+      heroRef: (el) => { this._hero = el; },
+      hintRef: (el) => { this._hint = el; },
+      capRef: (el) => { this._cap = el; },
+      hudRef: (el) => { this._hud = el; },
+      loaderRef: (el) => { this._loader = el; },
+      barRef: (el) => { this._bar = el; },
+      pctRef: (el) => { this._pctEl = el; },
+      showLoader: !this.state.loaded,
+      p1: a === 'p1',
+      p2: a === 'p2',
+      p3: a === 'p3',
+      s1: step >= 1,
+      s2: step >= 2,
+      s3: step >= 3,
+      typing: !!a && step < (typingTotals[a] || 0),
+      close: () => this._close(),
+    };
+  }
+}
+</script>
+</body>
+</html>

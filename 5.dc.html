@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <title>SITELINE — Model the world together</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    html, body { margin: 0; padding: 0; background: #04070c; }
+    a { color: #38d9f5; text-decoration: none; }
+    a:hover { color: #9beeff; }
+    ::selection { background: #38d9f5; color: #04070c; }
+  </style>
+</helmet>
+
+<div data-screen-label="Isometric City Hero" style="min-height: 100vh; background: #04070c; color: #dfe9ef; font-family: 'Chakra Petch', sans-serif; display: flex; flex-direction: column; overflow: hidden; position: relative;">
+
+  <!-- top bar -->
+  <header style="display: flex; align-items: center; justify-content: space-between; padding: 22px 40px; border-bottom: 1px solid rgba(56,217,245,0.14); position: relative; z-index: 3;">
+    <div style="display: flex; align-items: center; gap: 10px;">
+      <div style="width: 22px; height: 22px; border: 2px solid #38d9f5; transform: rotate(45deg); display: grid; place-items: center;">
+        <div style="width: 6px; height: 6px; background: #38d9f5;"></div>
+      </div>
+      <span style="font-weight: 700; font-size: 18px; letter-spacing: 0.18em;">SITELINE</span>
+    </div>
+    <nav style="display: flex; gap: 32px; font-family: 'IBM Plex Mono', monospace; font-size: 12px; letter-spacing: 0.12em; color: #8fa6b2;">
+      <a href="#" style="color: #8fa6b2;" style-hover="color: #dfe9ef;">PRODUCT</a>
+      <a href="#" style="color: #8fa6b2;" style-hover="color: #dfe9ef;">PRICING</a>
+      <a href="#" style="color: #8fa6b2;" style-hover="color: #dfe9ef;">DOCS</a>
+    </nav>
+    <a href="#" style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; letter-spacing: 0.12em; color: #04070c; background: #38d9f5; padding: 10px 18px; font-weight: 500;" style-hover="background: #9beeff; color: #04070c;">START BUILDING</a>
+  </header>
+
+  <!-- hero body -->
+  <div style="flex: 1; display: grid; grid-template-columns: minmax(380px, 500px) 1fr; gap: 0; align-items: stretch; position: relative;">
+
+    <!-- left: copy + tabs -->
+    <div style="padding: 48px 8px 48px 40px; display: flex; flex-direction: column; justify-content: center; gap: 12px; position: relative; z-index: 2;">
+      <div style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.22em; color: #38d9f5; margin-bottom: 6px;">FIGMA-STYLE COLLABORATION · FOR THE BUILT WORLD</div>
+      <h1 style="margin: 0 0 18px 0; font-size: clamp(34px, 3.4vw, 52px); line-height: 1.02; font-weight: 700; letter-spacing: 0.01em; text-transform: uppercase; text-wrap: balance;">Model environments. Together. Live.</h1>
+
+      <!-- tabs -->
+      <div style="display: flex; flex-direction: column; border-top: 1px solid rgba(56,217,245,0.18);">
+
+        <div onMouseEnter="{{ set0 }}" onClick="{{ set0 }}" style="cursor: pointer; padding: 16px 16px 16px 0; border-bottom: 1px solid rgba(56,217,245,0.18); display: flex; flex-direction: column; gap: 8px; border-left: 2px solid {{ bar0 }}; padding-left: 16px; transition: border-color 0.3s;">
+          <div style="display: flex; align-items: baseline; gap: 14px;">
+            <span style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: {{ num0 }};">01</span>
+            <span style="font-size: 20px; font-weight: 700; letter-spacing: 0.06em; color: {{ ttl0 }};">MODEL THE SITE</span>
+          </div>
+          <p style="margin: 0; font-size: 14px; line-height: 1.55; color: #8fa6b2; max-width: 40ch; display: {{ show0 }};">Sketch full environments in minutes — terrain, structures, massing. Precise enough for builders, fast enough for ideas.</p>
+        </div>
+
+        <div onMouseEnter="{{ set1 }}" onClick="{{ set1 }}" style="cursor: pointer; padding: 16px 16px 16px 0; border-bottom: 1px solid rgba(56,217,245,0.18); display: flex; flex-direction: column; gap: 8px; border-left: 2px solid {{ bar1 }}; padding-left: 16px; transition: border-color 0.3s;">
+          <div style="display: flex; align-items: baseline; gap: 14px;">
+            <span style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: {{ num1 }};">02</span>
+            <span style="font-size: 20px; font-weight: 700; letter-spacing: 0.06em; color: {{ ttl1 }};">BUILD TOGETHER</span>
+          </div>
+          <p style="margin: 0; font-size: 14px; line-height: 1.55; color: #8fa6b2; max-width: 40ch; display: {{ show1 }};">Multiplayer editing on one shared model. Live cursors, instant sync — no file-passing, no version soup.</p>
+        </div>
+
+        <div onMouseEnter="{{ set2 }}" onClick="{{ set2 }}" style="cursor: pointer; padding: 16px 16px 16px 0; border-bottom: 1px solid rgba(56,217,245,0.18); display: flex; flex-direction: column; gap: 8px; border-left: 2px solid {{ bar2 }}; padding-left: 16px; transition: border-color 0.3s;">
+          <div style="display: flex; align-items: baseline; gap: 14px;">
+            <span style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: {{ num2 }};">03</span>
+            <span style="font-size: 20px; font-weight: 700; letter-spacing: 0.06em; color: {{ ttl2 }};">PIN FEEDBACK IN 3D</span>
+          </div>
+          <p style="margin: 0; font-size: 14px; line-height: 1.55; color: #8fa6b2; max-width: 40ch; display: {{ show2 }};">Comments live on the geometry itself. Point at the exact wall, floor, or beam — no screenshots, no guesswork.</p>
+        </div>
+
+        <div onMouseEnter="{{ set3 }}" onClick="{{ set3 }}" style="cursor: pointer; padding: 16px 16px 16px 0; border-bottom: 1px solid rgba(56,217,245,0.18); display: flex; flex-direction: column; gap: 8px; border-left: 2px solid {{ bar3 }}; padding-left: 16px; transition: border-color 0.3s;">
+          <div style="display: flex; align-items: baseline; gap: 14px;">
+            <span style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: {{ num3 }};">04</span>
+            <span style="font-size: 20px; font-weight: 700; letter-spacing: 0.06em; color: {{ ttl3 }};">SHARE THE WORLD</span>
+          </div>
+          <p style="margin: 0; font-size: 14px; line-height: 1.55; color: #8fa6b2; max-width: 40ch; display: {{ show3 }};">One link. A full walkthrough on any device — clients and crews explore the model, no installs.</p>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- right: 3D city -->
+    <div style="position: relative; min-height: 540px;">
+      <x-import component-from-global-scope="iso-city" from="./city-scene-v1.js" scene="{{ scene }}" accent="{{ accent }}" auto="0" style="position: absolute; inset: 0;" hint-size="100%,100%"></x-import>
+
+      <!-- HUD corner marks -->
+      <div style="position: absolute; top: 28px; left: 28px; width: 26px; height: 26px; border-top: 1px solid rgba(56,217,245,0.5); border-left: 1px solid rgba(56,217,245,0.5); pointer-events: none;"></div>
+      <div style="position: absolute; bottom: 28px; right: 28px; width: 26px; height: 26px; border-bottom: 1px solid rgba(56,217,245,0.5); border-right: 1px solid rgba(56,217,245,0.5); pointer-events: none;"></div>
+      <div style="position: absolute; top: 30px; right: 34px; font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.18em; color: rgba(56,217,245,0.6); pointer-events: none;">GRID · SECTOR {{ sectorLabel }}</div>
+      <div style="position: absolute; bottom: 30px; left: 34px; font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.18em; color: rgba(143,166,178,0.55); pointer-events: none;">ORTHO 35.26° · LIVE MODEL</div>
+    </div>
+
+  </div>
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{
+  &quot;accent&quot;: { &quot;editor&quot;: &quot;color&quot;, &quot;default&quot;: &quot;#38d9f5&quot;, &quot;options&quot;: [&quot;#38d9f5&quot;, &quot;#7c6cff&quot;, &quot;#3df5a6&quot;, &quot;#f5b03d&quot;], &quot;tsType&quot;: &quot;string&quot;, &quot;section&quot;: &quot;Look&quot; },
+  &quot;autoCycle&quot;: { &quot;editor&quot;: &quot;boolean&quot;, &quot;default&quot;: true, &quot;tsType&quot;: &quot;boolean&quot;, &quot;section&quot;: &quot;Behavior&quot; }
+}">
+class Component extends DCLogic {
+  state = { scene: 0, lastInteract: 0 };
+
+  componentDidMount() {
+    this._timer = setInterval(() => {
+      const auto = this.props.autoCycle ?? true;
+      if (!auto) return;
+      if (Date.now() - this.state.lastInteract < 8000) return;
+      this.setState(s => ({ scene: (s.scene + 1) % 4 }));
+    }, 4000);
+  }
+
+  componentWillUnmount() { clearInterval(this._timer); }
+
+  _set(n) {
+    this.setState({ scene: n, lastInteract: Date.now() });
+  }
+
+  renderVals() {
+    const s = this.state.scene;
+    const accent = this.props.accent ?? '#38d9f5';
+    const vals = {
+      scene: s,
+      accent,
+      sectorLabel: ['A-01', 'B-02', 'C-03', 'D-04'][s],
+      set0: () => this._set(0),
+      set1: () => this._set(1),
+      set2: () => this._set(2),
+      set3: () => this._set(3),
+    };
+    for (let i = 0; i < 4; i++) {
+      const on = i === s;
+      vals['bar' + i] = on ? accent : 'transparent';
+      vals['num' + i] = on ? accent : '#5a6d78';
+      vals['ttl' + i] = on ? '#ffffff' : '#8fa6b2';
+      vals['show' + i] = on ? 'block' : 'none';
+    }
+    return vals;
+  }
+}
+
+</script>
+</body>
+</html>
